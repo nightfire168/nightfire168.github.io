@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="generator" content="Hugo 0.160.1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山与风之间 | Jerry&#39;s Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+
+<div class="nav">
+  <div class="container nav-inner">
+    <div class="nav-logo"><strong>Magical Area</strong></div>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#posts">文章</a>
+      <a href="#gallery">美景</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="hero">
+  <div class="container hero-content">
+    <h1>山与风之间</h1>
+    <p class="hero-desc">记录回忆、记录生活、记录远方</p>
+    <a href="#posts" class="btn">进入博客</a>
+  </div>
+</div>
+
+
+<section id="about" class="container">
+  <h2>关于我</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <p>一个在城市与自然之间游走的人。热爱生活，钟情山水，心系远方。越重山，斩万难，终得见春山！</p>
+    </div>
+    <div class="card">
+      <p>关键词：三分钟热度选手 / 黑暗料理烹饪师 / 天马行空想象家 / 体重难减人士 / 曲库极深KTV麦霸 / 遇事很慌张先生 /</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="posts" class="container">
+  <h2 style="display: flex; justify-content: space-between; align-items: center;">
+  最近文章
+  <a href="javascript:void(0)" onclick="showAllPosts()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
+</h2>
+  <div id="post-list" class="grid grid-3">
+  
+  <div class="card post" onclick="openPost( 1 )">
+    <img src="https://images.unsplash.com/photo-1776142764728-f6dc6f712794" alt="山的另一侧">
+    <h3>山的另一侧</h3>
+    <p>关于孤独与远方的思考</p>
+  </div>
+  
+  <div class="card post" onclick="openPost( 3 )">
+    <img src="https://images.unsplash.com/photo-1776141665862-cf96a1f336df" alt="慢下来">
+    <h3>慢下来</h3>
+    <p>生活的另一种节奏</p>
+  </div>
+  
+  <div class="card post" onclick="openPost( 2 )">
+    <img src="https://images.unsplash.com/photo-1776141666154-6bcb1f431153" alt="风从哪里来">
+    <h3>风从哪里来</h3>
+    <p>旅途中遇见的风景</p>
+  </div>
+  
+</div>
+</section>
+
+
+<section id="gallery" class="container">
+  <h2 style="display: flex; justify-content: space-between; align-items: center;">
+  美景
+  <a href="javascript:void(0)" onclick="showAllGallery()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
+</h2>
+  <div id="gallery-list" class="grid grid-3">
+    
+    <img src="https://images.unsplash.com/photo-1776142357895-320b0c9bc0a4" alt="风景" onclick="openLightbox(this.src)">
+    
+    <img src="https://images.unsplash.com/photo-1776143308397-4264a9dddddb" alt="风景" onclick="openLightbox(this.src)">
+    
+    <img src="https://images.unsplash.com/photo-1776141665908-63fdaf0d80b6" alt="风景" onclick="openLightbox(this.src)">
+    
+  </div>
+</section>
+
+
+<div class="modal" id="postModal">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal()">&times;</button>
+    <img id="modalImg" class="modal-img" src="">
+    <h2 id="modalTitle" class="modal-title"></h2>
+    <p id="modalDesc" class="modal-desc"></p>
+    <div id="modalText" class="modal-text"></div>
+  </div>
+</div>
+
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" class="lightbox-img" src="">
+</div>
+
+
+<footer id="contact" class="container">
+  <h2>联系我</h2>
+  <p>Email: boy007r@163.com</p>
+  <p style="margin-top:16px; font-size:14px;">© 2026 山与风之间 | Jerry&#39;s Blog</p>
+</footer>
+
+<script>
+  
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  
+  const posts = [
+  
+  {
+    id:  1 ,
+    img: "https:\/\/images.unsplash.com\/photo-1776142764728-f6dc6f712794",
+    title: "山的另一侧",
+    desc: "关于孤独与远方的思考",
+    text: "\u003cp\u003e越过层层山峦，我终于明白，孤独不是无人陪伴，而是内心与世界的对话。\u003c/p\u003e\n\u003cp\u003e山的另一侧，没有想象中的繁华，却有最真实的宁静。\u003c/p\u003e\n\u003cp\u003e人生如同登山，我们总在追逐山顶的风景，却忽略了沿途的每一步都值得珍惜。\n当你站在高处回望，才发现所有的艰难险阻，都成就了如今的自己。\u003c/p\u003e\n"
+  },
+  
+  {
+    id:  3 ,
+    img: "https:\/\/images.unsplash.com\/photo-1776141665862-cf96a1f336df",
+    title: "慢下来",
+    desc: "生活的另一种节奏",
+    text: "\u003cp\u003e在快节奏的世界里，我们总是忙着赶路，忘了为何出发。慢下来，才是生活的真谛。\u003c/p\u003e\n\u003cp\u003e一杯茶，一本书，一个安静的下午，就能让浮躁的心重新平静。\u003c/p\u003e\n\u003cp\u003e生活不需要永远奔跑，偶尔停下脚步，感受阳光，感受微风，感受当下的美好。\u003c/p\u003e\n"
+  },
+  
+  {
+    id:  2 ,
+    img: "https:\/\/images.unsplash.com\/photo-1776141666154-6bcb1f431153",
+    title: "风从哪里来",
+    desc: "旅途中遇见的风景",
+    text: "\u003cp\u003e风掠过草原，穿过山谷，带来远方的气息。每一次旅行，都是与风的相遇，与世界的拥抱。\u003c/p\u003e\n\u003cp\u003e我喜欢在路上的感觉，没有目的地，没有时间限制，只是跟着风的方向，遇见未知的人和事。\u003c/p\u003e\n\u003cp\u003e那些不经意间的美好，才是旅途最珍贵的礼物。\u003c/p\u003e\n"
+  },
+  
+];
+
+  
+  function openPost(id) {
+    const post = posts.find(p => p.id === id);
+    document.getElementById('modalImg').src = post.img;
+    document.getElementById('modalTitle').innerText = post.title;
+    document.getElementById('modalDesc').innerText = post.desc;
+    document.getElementById('modalText').innerHTML = post.text;
+    document.getElementById('postModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('postModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+
+
+function showAllPosts() {
+  document.getElementById('post-list').innerHTML = `
+  
+  <div class="card post" onclick="openPost(1)">
+    <img src="https:\/\/images.unsplash.com\/photo-1776142764728-f6dc6f712794" alt="山的另一侧">
+    <h3>山的另一侧</h3>
+    <p>关于孤独与远方的思考</p>
+  </div>
+  
+  <div class="card post" onclick="openPost(3)">
+    <img src="https:\/\/images.unsplash.com\/photo-1776141665862-cf96a1f336df" alt="慢下来">
+    <h3>慢下来</h3>
+    <p>生活的另一种节奏</p>
+  </div>
+  
+  <div class="card post" onclick="openPost(2)">
+    <img src="https:\/\/images.unsplash.com\/photo-1776141666154-6bcb1f431153" alt="风从哪里来">
+    <h3>风从哪里来</h3>
+    <p>旅途中遇见的风景</p>
+  </div>
+  `;
+}
+
+
+function showAllGallery(){
+  document.getElementById('gallery-list').innerHTML = `
+  
+  <img src="https:\/\/images.unsplash.com\/photo-1776142357895-320b0c9bc0a4" alt="风景" onclick="openLightbox(this.src)">
+  
+  <img src="https:\/\/images.unsplash.com\/photo-1776143308397-4264a9dddddb" alt="风景" onclick="openLightbox(this.src)">
+  
+  <img src="https:\/\/images.unsplash.com\/photo-1776141665908-63fdaf0d80b6" alt="风景" onclick="openLightbox(this.src)">
+  `;
+}
+
+</script>
+
+</body>
+</html>
