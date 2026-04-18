@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://nightfire168.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/posts/mountain/</loc>
+    <loc>http://localhost:1313/posts/mountain/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/posts/slow-life/</loc>
+    <loc>http://localhost:1313/posts/slow-life/</loc>
   </url><url>
-    <loc>https://nightfire168.github.io/posts/wind/</loc>
+    <loc>http://localhost:1313/posts/wind/</loc>
   </url>
 </urlset>

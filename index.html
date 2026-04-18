@@ -1,219 +1,809 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-	<meta name="generator" content="Hugo 0.160.1">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta name="generator" content="Hugo 0.160.1">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>山与风之间 | Jerry&#39;s Blog</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --bg: #071019;
+      --card: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.15);
+      --text: #eef3f8;
+      --muted: #b7c2ce;
+      --accent: #ff8a3d;
+      --accent2: #78a7ff;
+      --shadow: 0 8px 30px rgba(0,0,0,0.2);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #08111b, #111b28);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+     
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 99;
+      border-bottom: 1px solid var(--line);
+      transition: var(--transition);
+    }
+
+    .nav.scrolled {
+      background: rgba(0,0,0,0.85);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    .nav-logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 15px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+     
+    .hero {
+      height: 82vh;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.85)),
+        url("https://images.unsplash.com/photo-1776141217011-f23cb4d25973") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      padding: 50px 0;
+      animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 50px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 500;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 138, 61, 0.3);
+    }
+
+     
+    section {
+      padding: 80px 0;
+      scroll-margin-top: 80px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 32px;
+      position: relative;
+      padding-left: 16px;
+      font-weight: 600;
+    }
+
+    h2::before {
+      content: "";
+      position: absolute; left: 0; top: 8px;
+      width: 4px; height: 22px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+     
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+     
+    .card {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      transition: var(--transition);
+      height: 100%;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+    .post img { height: 200px; }
+    .post h3 { margin: 16px 0 8px; font-size: 18px; font-weight: 600; }
+    .post p { color: var(--muted); font-size: 14px; }
+    .post img:hover { transform: scale(1.03); }
+
+     
+    .post-like {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      user-select: none;
+    }
+    .like-icon {
+      font-size: 14px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .like-icon.liked {
+      color: var(--accent);
+      transform: scale(1.15);
+    }
+
+     
+    #gallery img {
+      height: 240px;
+      cursor: zoom-in;
+    }
+    #gallery img:hover {
+      transform: scale(1.04);
+      box-shadow: var(--shadow);
+    }
+
+     
+    .modal {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
+    }
+    .modal.active { opacity: 1; visibility: visible; }
+    .modal-content {
+      background: #0c1824;
+      width: min(800px, 100%);
+      max-height: 90vh;
+      border-radius: 20px;
+      padding: 40px;
+      overflow-y: auto;
+      position: relative;
+      border: 1px solid var(--line);
+    }
+    .close {
+      position: absolute; top: 20px; right: 24px;
+      font-size: 24px; background: none; border: none;
+      color: var(--muted); cursor: pointer; transition: var(--transition);
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    }
+    .close:hover { color: #fff; transform: rotate(90deg); }
+    .modal-img { height: 320px; border-radius: 16px; margin-bottom: 24px; }
+    .modal-title { font-size: 28px; margin-bottom: 16px; }
+    .modal-desc { color: var(--muted); margin-bottom: 24px; }
+    .modal-text { color: var(--text); font-size: 16px; line-height: 1.8; }
+
+     
+    .modal-like {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .modal-like .like-icon {
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+     
+    .post-nav {
+      display: flex; justify-content: space-between; margin: 30px 0; gap: 12px;
+    }
+    .post-nav button {
+      padding: 10px 20px; border-radius: 8px; background: var(--card);
+      border: 1px solid var(--line); color: var(--text); cursor: pointer; transition: var(--transition);
+    }
+    .post-nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .post-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+     
+    .comment-section {
+      margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);
+    }
+    .comment-section h4 { margin-bottom: 16px; font-size: 18px; }
+    .comment-name-input {
+      width: 100%; padding: 10px 14px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 8px; color: var(--text);
+      margin-bottom: 10px; font-size: 15px;
+    }
+    .comment-input {
+      width: 100%; padding: 12px 16px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 8px; color: var(--text);
+      resize: none; margin-bottom: 12px; font-size: 15px;
+    }
+    .comment-btn {
+      padding: 8px 18px; background: var(--accent); color: #000;
+      border: none; border-radius: 6px; cursor: pointer;
+    }
+    .comment-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .comment-item {
+      padding: 14px; background: var(--card); border-radius: 8px;
+      border: 1px solid var(--line); position: relative;
+    }
+    .comment-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+    }
+    .comment-name { font-size: 14px; color: var(--accent); font-weight: 500; }
+    .comment-reply {
+      font-size: 12px; color: var(--accent2); cursor: pointer;
+      padding: 2px 6px; border-radius: 4px; background: rgba(120,167,255,0.1);
+      margin-right:6px;
+    }
+    .comment-reply:hover { background: rgba(120,167,255,0.2); }
+    .comment-delete {
+      font-size: 12px; color: #ff6b6b; cursor: pointer;
+      padding: 2px 6px; border-radius: 4px; background: rgba(255,107,107,0.1);
+    }
+    .comment-delete:hover { background: rgba(255,107,107,0.2); }
+    .comment-content { font-size: 15px; line-height: 1.6; margin-bottom: 6px; }
+    .comment-time { font-size: 12px; color: var(--muted); }
+    .reply-box {
+      margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);
+    }
+    .reply-item {
+      font-size:14px; color:var(--muted);
+      padding-left:10px; border-left:2px solid var(--accent2);
+      margin-top:6px;
+    }
+    .reply-author { color:var(--accent2); font-weight:bold; }
+
+     
+    .comment-pagination {
+      display: flex; justify-content: center; gap: 8px; margin-top: 16px;
+    }
+    .page-btn {
+      width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+      background: var(--card); border: 1px solid var(--line); color: var(--text);
+      border-radius: 6px; cursor: pointer; font-size: 14px;
+    }
+    .page-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+    .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+     
+    .lightbox {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: var(--transition);
+      cursor: zoom-out; padding: 20px;
+    }
+    .lightbox.active { opacity: 1; visibility: visible; }
+    .lightbox-img { max-width: 90%; max-height: 90vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
+     
+    footer {
+      padding: 60px 0; border-top: 1px solid var(--line);
+      margin-top: 40px; text-align: center;
+    }
+    footer h2 { text-align: center; margin-bottom: 20px; }
+    footer h2::before { display: none; }
+    footer p { color: var(--muted); margin: 6px 0; font-size: 15px; }
+
+     
+    @media (max-width: 800px) {
+      .grid-2,.grid-3 { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; }
+      h2 { font-size: 24px; }
+      .hero { height: 75vh; }
+      section { padding: 60px 0; }
+      .modal-content { padding: 30px 20px; }
+      .modal-img { height: 220px; }
+    }
+    @media (max-width: 480px) {
+      .nav-logo { font-size: 16px; }
+      .nav-links a { font-size: 14px; }
+    }
+  </style>
 </head>
 <body>
-
-
-<div class="nav">
-  <div class="container nav-inner">
-    <div class="nav-logo"><strong>Magical Area</strong></div>
-    <div class="nav-links">
-      <a href="#about">关于</a>
-      <a href="#posts">文章</a>
-      <a href="#gallery">美景</a>
-      <a href="#contact">联系</a>
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="nav-logo"><strong>Magical Area</strong></div>
+      <div class="nav-links">
+        <a href="#about">关于</a>
+        <a href="#posts">文章</a>
+        <a href="#gallery">美景</a>
+        <a href="#contact">联系</a>
+      </div>
     </div>
   </div>
-</div>
 
-
-<div class="hero">
-  <div class="container hero-content">
-    <h1>山与风之间</h1>
-    <p class="hero-desc">记录回忆、记录生活、记录远方</p>
-    <a href="#posts" class="btn">进入博客</a>
-  </div>
-</div>
-
-
-<section id="about" class="container">
-  <h2>关于我</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <p>一个在城市与自然之间游走的人。热爱生活，钟情山水，心系远方。越重山，斩万难，终得见春山！</p>
-    </div>
-    <div class="card">
-      <p>关键词：三分钟热度选手 / 黑暗料理烹饪师 / 天马行空想象家 / 体重难减人士 / 曲库极深KTV麦霸 / 遇事很慌张先生 /</p>
+  <div class="hero">
+    <div class="container hero-content">
+      <h1>山与风之间</h1>
+      <p class="hero-desc">记录回忆、记录生活、记录远方</p>
+      <a href="#posts" class="btn">进入博客</a>
     </div>
   </div>
-</section>
 
+  <section id="about" class="container">
+    <h2>关于我</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <p>一个在城市与自然之间游走的人。热爱生活，钟情山水，心系远方。越重山，斩万难，终得见春山！</p>
+      </div>
+      <div class="card">
+        <p>关键词：三分钟热度选手 / 黑暗料理烹饪师 / 天马行空想象家 / 体重难减人士 / 曲库极深KTV麦霸 / 遇事很慌张先生 /</p>
+      </div>
+    </div>
+  </section>
 
-<section id="posts" class="container">
-  <h2 style="display: flex; justify-content: space-between; align-items: center;">
-  最近文章
-  <a href="javascript:void(0)" onclick="showAllPosts()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
-</h2>
-  <div id="post-list" class="grid grid-3">
-  
-  <div class="card post" onclick="openPost( 1 )">
-    <img src="https://images.unsplash.com/photo-1776142764728-f6dc6f712794" alt="山的另一侧">
-    <h3>山的另一侧</h3>
-    <p>关于孤独与远方的思考</p>
+  <section id="posts" class="container">
+    <h2 style="display: flex; justify-content: space-between; align-items: center;">
+      最近文章
+      <a href="javascript:void(0)" onclick="showAllPosts()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
+    </h2>
+    <div id="post-list" class="grid grid-3">
+      
+      <div class="card post" onclick="openPost(1)">
+        <img src="https://images.unsplash.com/photo-1776142764728-f6dc6f712794" alt="山的另一侧">
+        <h3>山的另一侧</h3>
+        <p>关于孤独与远方的思考</p>
+        <div class="post-like" onclick="event.stopPropagation(); toggleLike(1)">
+          <span class="like-icon" id="like-icon-1">❤️</span>
+          <span class="like-count" id="like-count-1">0</span>
+        </div>
+      </div>
+      
+      <div class="card post" onclick="openPost(3)">
+        <img src="https://images.unsplash.com/photo-1776141665862-cf96a1f336df" alt="慢下来">
+        <h3>慢下来</h3>
+        <p>生活的另一种节奏</p>
+        <div class="post-like" onclick="event.stopPropagation(); toggleLike(3)">
+          <span class="like-icon" id="like-icon-3">❤️</span>
+          <span class="like-count" id="like-count-3">0</span>
+        </div>
+      </div>
+      
+      <div class="card post" onclick="openPost(2)">
+        <img src="https://images.unsplash.com/photo-1776141666154-6bcb1f431153" alt="风从哪里来">
+        <h3>风从哪里来</h3>
+        <p>旅途中遇见的风景</p>
+        <div class="post-like" onclick="event.stopPropagation(); toggleLike(2)">
+          <span class="like-icon" id="like-icon-2">❤️</span>
+          <span class="like-count" id="like-count-2">0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="container">
+    <h2 style="display: flex; justify-content: space-between; align-items: center;">
+      美景
+      <a href="javascript:void(0)" onclick="showAllGallery()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
+    </h2>
+    <div id="gallery-list" class="grid grid-3">
+      <img src="https://images.unsplash.com/photo-1776142357895-320b0c9bc0a4" alt="风景" onclick="openLightbox(this.src)">
+      <img src="https://images.unsplash.com/photo-1776143308397-4264a9dddddb" alt="风景" onclick="openLightbox(this.src)">
+      <img src="https://images.unsplash.com/photo-1776141665908-63fdaf0d80b6" alt="风景" onclick="openLightbox(this.src)">
+    </div>
+  </section>
+
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal()">&times;</button>
+      <img id="modalImg" class="modal-img" src="#">
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <p id="modalDesc" class="modal-desc"></p>
+
+      
+      <div class="modal-like" id="modal-like-box">
+        <span class="like-icon" id="modal-like-icon">❤️</span>
+        <span class="like-count" id="modal-like-count">0</span>
+      </div>
+
+      <div id="modalText" class="modal-text"></div>
+
+      <div class="post-nav">
+        <button id="prevBtn" onclick="prevPost()">← 上一篇</button>
+        <button id="nextBtn" onclick="nextPost()">下一篇 →</button>
+      </div>
+
+      <div class="comment-section">
+        <h4>评论</h4>
+        <input type="text" class="comment-name-input" id="commentName" placeholder="输入你的昵称~">
+        <textarea class="comment-input" id="commentInput" placeholder="写下你的看法..." rows="3"></textarea>
+        <button class="comment-btn" onclick="addComment()">发表评论</button>
+        <div class="comment-list" id="commentList"></div>
+        <div class="comment-pagination" id="commentPagination"></div>
+      </div>
+    </div>
   </div>
-  
-  <div class="card post" onclick="openPost( 3 )">
-    <img src="https://images.unsplash.com/photo-1776141665862-cf96a1f336df" alt="慢下来">
-    <h3>慢下来</h3>
-    <p>生活的另一种节奏</p>
-  </div>
-  
-  <div class="card post" onclick="openPost( 2 )">
-    <img src="https://images.unsplash.com/photo-1776141666154-6bcb1f431153" alt="风从哪里来">
-    <h3>风从哪里来</h3>
-    <p>旅途中遇见的风景</p>
-  </div>
-  
-</div>
-</section>
 
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" class="lightbox-img" src="#">
+  </div>
 
-<section id="gallery" class="container">
-  <h2 style="display: flex; justify-content: space-between; align-items: center;">
-  美景
-  <a href="javascript:void(0)" onclick="showAllGallery()" style="font-size: 16px; color: var(--accent); margin: 0;">显示更多 →</a>
-</h2>
-  <div id="gallery-list" class="grid grid-3">
+  <footer id="contact" class="container">
+    <h2>联系我</h2>
+    <p>Email: boy007r@163.com</p>
+    <p style="margin-top:16px; font-size:14px;">© 2026 山与风之间 | Jerry&#39;s Blog</p>
+  </footer>
+
+  <script>
     
-    <img src="https://images.unsplash.com/photo-1776142357895-320b0c9bc0a4" alt="风景" onclick="openLightbox(this.src)">
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
     
-    <img src="https://images.unsplash.com/photo-1776143308397-4264a9dddddb" alt="风景" onclick="openLightbox(this.src)">
+    const posts = [
+      { id:1, img:"https://images.unsplash.com/photo-1776142764728-f6dc6f712794", title:"山的另一侧", desc:"关于孤独与远方的思考", text:"<p>越过层层山峦，我终于明白，孤独不是无人陪伴，而是内心与世界的对话。</p><p>山的另一侧，没有想象中的繁华，却有最真实的宁静。</p><p>人生如同登山，我们总在追逐山顶的风景，却忽略了沿途的每一步都值得珍惜。当你站在高处回望，才发现所有的艰难险阻，都成就了如今的自己。</p>" },
+      { id:2, img:"https://images.unsplash.com/photo-1776141666154-6bcb1f431153", title:"风从哪里来", desc:"旅途中遇见的风景", text:"<p>风掠过草原，穿过山谷，带来远方的气息。每一次旅行，都是与风的相遇，与世界的拥抱。</p><p>我喜欢在路上的感觉，没有目的地，没有时间限制，只是跟着风的方向，遇见未知的人和事。</p><p>那些不经意间的美好，才是旅途最珍贵的礼物。</p>" },
+      { id:3, img:"https://images.unsplash.com/photo-1776141665862-cf96a1f336df", title:"慢下来", desc:"生活的另一种节奏", text:"<p>在快节奏的世界里，我们总是忙着赶路，忘了为何出发。慢下来，才是生活的真谛。</p><p>一杯茶，一本书，一个安静的下午，就能让浮躁的心重新平静。</p><p>生活不需要永远奔跑，偶尔停下脚步，感受阳光，感受微风，感受当下的美好。</p>" }
+    ];
+
+    let currentPostId = null;
+    let commentPage = 1;
+    const commentPageSize = 5;
+    const ADMIN_ID = "blog_owner_jerry";
+
     
-    <img src="https://images.unsplash.com/photo-1776141665908-63fdaf0d80b6" alt="风景" onclick="openLightbox(this.src)">
+    function getVisitorId() {
+      let id = localStorage.getItem('visitorId');
+      if (!id) {
+        id = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2,9);
+        localStorage.setItem('visitorId', id);
+      }
+      return id;
+    }
+    const myId = getVisitorId();
+    const isAdmin = myId === ADMIN_ID;
+
     
-  </div>
-</section>
+    function getLikeData() {
+      return JSON.parse(localStorage.getItem('blogLikes') || '{}');
+    }
+    function getLikeCount(postId) {
+      const d = getLikeData();
+      return d[postId]?.count || 0;
+    }
+    function hasLiked(postId) {
+      const d = getLikeData();
+      return d[postId]?.users?.includes(myId) || false;
+    }
+    function toggleLike(postId) {
+      const data = getLikeData();
+      if (!data[postId]) data[postId] = { count: 0, users: [] };
+      const has = hasLiked(postId);
+      if (has) {
+        data[postId].count--;
+        data[postId].users = data[postId].users.filter(i => i !== myId);
+      } else {
+        data[postId].count++;
+        data[postId].users.push(myId);
+      }
+      localStorage.setItem('blogLikes', JSON.stringify(data));
+      refreshLikeUI(postId);
+    }
+    function refreshLikeUI(postId) {
+      const cnt = getLikeCount(postId);
+      const liked = hasLiked(postId);
+      const icon = document.getElementById(`like-icon-${postId}`);
+      const num = document.getElementById(`like-count-${postId}`);
+      if (icon) icon.classList.toggle('liked', liked);
+      if (num) num.innerText = cnt;
+      if (currentPostId === postId) {
+        const mic = document.getElementById('modal-like-icon');
+        const mnc = document.getElementById('modal-like-count');
+        if (mic) mic.classList.toggle('liked', liked);
+        if (mnc) mnc.innerText = cnt;
+      }
+    }
+    function initAllLikes() {
+      posts.forEach(p => refreshLikeUI(p.id));
+    }
 
+    
+    function openPost(id) {
+      currentPostId = id;
+      const post = posts.find(p => p.id === id);
+      document.getElementById('modalImg').src = post.img;
+      document.getElementById('modalTitle').innerText = post.title;
+      document.getElementById('modalDesc').innerText = post.desc;
+      document.getElementById('modalText').innerHTML = post.text;
 
-<div class="modal" id="postModal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal()">&times;</button>
-    <img id="modalImg" class="modal-img" src="">
-    <h2 id="modalTitle" class="modal-title"></h2>
-    <p id="modalDesc" class="modal-desc"></p>
-    <div id="modalText" class="modal-text"></div>
-  </div>
-</div>
+      
+      const liked = hasLiked(id);
+      const cnt = getLikeCount(id);
+      const mic = document.getElementById('modal-like-icon');
+      const mnc = document.getElementById('modal-like-count');
+      mic.classList.toggle('liked', liked);
+      mnc.innerText = cnt;
+      mic.onclick = () => toggleLike(id);
 
+      document.getElementById('postModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      updatePostNav();
+      commentPage = 1;
+      renderComments();
+    }
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightboxImg" class="lightbox-img" src="">
-</div>
+    
+    function closeModal() {
+      document.getElementById('postModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
+    
+    function prevPost() {
+      const idx = posts.findIndex(p => p.id === currentPostId);
+      if (idx > 0) openPost(posts[idx-1].id);
+    }
+    function nextPost() {
+      const idx = posts.findIndex(p => p.id === currentPostId);
+      if (idx < posts.length-1) openPost(posts[idx+1].id);
+    }
+    function updatePostNav() {
+      const idx = posts.findIndex(p => p.id === currentPostId);
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('nextBtn').disabled = idx === posts.length-1;
+    }
 
-<footer id="contact" class="container">
-  <h2>联系我</h2>
-  <p>Email: boy007r@163.com</p>
-  <p style="margin-top:16px; font-size:14px;">© 2026 山与风之间 | Jerry&#39;s Blog</p>
-</footer>
+    
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-<script>
-  
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-  });
+    
+    function showAllPosts() {
+      document.getElementById('post-list').innerHTML = `
+        <div class="card post" onclick="openPost(1)">
+          <img src="https://images.unsplash.com/photo-1776142764728-f6dc6f712794"><h3>山的另一侧</h3><p>关于孤独与远方的思考</p>
+          <div class="post-like" onclick="event.stopPropagation(); toggleLike(1)"><span class="like-icon" id="like-icon-1">❤️</span><span class="like-count" id="like-count-1">0</span></div>
+        </div>
+        <div class="card post" onclick="openPost(2)">
+          <img src="https://images.unsplash.com/photo-1776141666154-6bcb1f431153"><h3>风从哪里来</h3><p>旅途中遇见的风景</p>
+          <div class="post-like" onclick="event.stopPropagation(); toggleLike(2)"><span class="like-icon" id="like-icon-2">❤️</span><span class="like-count" id="like-count-2">0</span></div>
+        </div>
+        <div class="card post" onclick="openPost(3)">
+          <img src="https://images.unsplash.com/photo-1776141665862-cf96a1f336df"><h3>慢下来</h3><p>生活的另一种节奏</p>
+          <div class="post-like" onclick="event.stopPropagation(); toggleLike(3)"><span class="like-icon" id="like-icon-3">❤️</span><span class="like-count" id="like-count-3">0</span></div>
+        </div>
+      `;
+      setTimeout(initAllLikes, 0);
+    }
+    function showAllGallery(){
+      document.getElementById('gallery-list').innerHTML = `
+        <img src="https://images.unsplash.com/photo-1776142357895-320b0c9bc0a4" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1776143308397-4264a9dddddb" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1776141665908-63fdaf0d80b6" onclick="openLightbox(this.src)">
+      `;
+    }
 
-  
-  const posts = [
-  
-  {
-    id:  1 ,
-    img: "https:\/\/images.unsplash.com\/photo-1776142764728-f6dc6f712794",
-    title: "山的另一侧",
-    desc: "关于孤独与远方的思考",
-    text: "\u003cp\u003e越过层层山峦，我终于明白，孤独不是无人陪伴，而是内心与世界的对话。\u003c/p\u003e\n\u003cp\u003e山的另一侧，没有想象中的繁华，却有最真实的宁静。\u003c/p\u003e\n\u003cp\u003e人生如同登山，我们总在追逐山顶的风景，却忽略了沿途的每一步都值得珍惜。\n当你站在高处回望，才发现所有的艰难险阻，都成就了如今的自己。\u003c/p\u003e\n"
-  },
-  
-  {
-    id:  3 ,
-    img: "https:\/\/images.unsplash.com\/photo-1776141665862-cf96a1f336df",
-    title: "慢下来",
-    desc: "生活的另一种节奏",
-    text: "\u003cp\u003e在快节奏的世界里，我们总是忙着赶路，忘了为何出发。慢下来，才是生活的真谛。\u003c/p\u003e\n\u003cp\u003e一杯茶，一本书，一个安静的下午，就能让浮躁的心重新平静。\u003c/p\u003e\n\u003cp\u003e生活不需要永远奔跑，偶尔停下脚步，感受阳光，感受微风，感受当下的美好。\u003c/p\u003e\n"
-  },
-  
-  {
-    id:  2 ,
-    img: "https:\/\/images.unsplash.com\/photo-1776141666154-6bcb1f431153",
-    title: "风从哪里来",
-    desc: "旅途中遇见的风景",
-    text: "\u003cp\u003e风掠过草原，穿过山谷，带来远方的气息。每一次旅行，都是与风的相遇，与世界的拥抱。\u003c/p\u003e\n\u003cp\u003e我喜欢在路上的感觉，没有目的地，没有时间限制，只是跟着风的方向，遇见未知的人和事。\u003c/p\u003e\n\u003cp\u003e那些不经意间的美好，才是旅途最珍贵的礼物。\u003c/p\u003e\n"
-  },
-  
-];
+    
+    function getCommentData() {
+      return JSON.parse(localStorage.getItem('blogComments') || '{}');
+    }
+    function getComments() {
+      const data = getCommentData();
+      return data[currentPostId] || [];
+    }
+    function saveAllComments(comments) {
+      const data = getCommentData();
+      data[currentPostId] = comments;
+      localStorage.setItem('blogComments', JSON.stringify(data));
+    }
 
-  
-  function openPost(id) {
-    const post = posts.find(p => p.id === id);
-    document.getElementById('modalImg').src = post.img;
-    document.getElementById('modalTitle').innerText = post.title;
-    document.getElementById('modalDesc').innerText = post.desc;
-    document.getElementById('modalText').innerHTML = post.text;
-    document.getElementById('postModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    
+    function addComment() {
+      const name = document.getElementById('commentName').value.trim() || '访客';
+      const content = document.getElementById('commentInput').value.trim();
+      if (!content) return;
+      const comments = getComments();
+      comments.unshift({
+        id: Date.now(), name, content, time: new Date().toLocaleString(),
+        authorId: myId, replies: []
+      });
+      saveAllComments(comments);
+      document.getElementById('commentInput').value = '';
+      commentPage = 1;
+      renderComments();
+    }
 
-  function closeModal() {
-    document.getElementById('postModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    
+    function replyComment(commentId) {
+      if(!isAdmin) { alert("只有博主可以回复！"); return; }
+      const content = prompt("请输入你的回复：");
+      if(!content) return;
+      const comments = getComments();
+      const cmt = comments.find(x => x.id === commentId);
+      if(!cmt) return;
+      cmt.replies.push({
+        author: "博主", content: content, time: new Date().toLocaleString()
+      });
+      saveAllComments(comments);
+      renderComments();
+    }
 
-  function openLightbox(src) {
-    document.getElementById('lightboxImg').src = src;
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+    
+    function deleteComment(commentId) {
+      const comments = getComments();
+      const cmt = comments.find(x => x.id === commentId);
+      if (!cmt) return;
+      if (cmt.authorId !== myId && !isAdmin) {
+        alert('你不能删除别人的评论！');
+        return;
+      }
+      if (!confirm('确定删除这条评论？')) return;
+      const newComments = comments.filter(x => x.id !== commentId);
+      saveAllComments(newComments);
+      renderComments();
+    }
 
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    
+    function renderComments() {
+      const all = getComments();
+      const total = all.length;
+      const totalPages = Math.ceil(total / commentPageSize) || 1;
+      if (commentPage > totalPages) commentPage = totalPages;
+      const start = (commentPage - 1) * commentPageSize;
+      const end = start + commentPageSize;
+      const list = all.slice(start, end);
 
+      document.getElementById('commentList').innerHTML = list.map(c => `
+        <div class="comment-item">
+          <div class="comment-header">
+            <div class="comment-name">${c.name}</div>
+            <div>
+              ${isAdmin ? `<div class="comment-reply" onclick="replyComment(${c.id})">回复</div>` : ''}
+              ${(c.authorId === myId || isAdmin) ? `<div class="comment-delete" onclick="deleteComment(${c.id})">删除</div>` : ''}
+            </div>
+          </div>
+          <div class="comment-content">${c.content}</div>
+          <div class="comment-time">${c.time}</div>
+          ${c.replies && c.replies.length > 0 ? `
+          <div class="reply-box">
+            ${c.replies.map(r => `
+              <div class="reply-item">
+                <span class="reply-author">${r.author}</span>：${r.content}<br>
+                <span style="font-size:12px; color:var(--muted)">${r.time}</span>
+              </div>
+            `).join('')}
+          </div>
+          ` : ''}
+        </div>
+      `).join('');
 
+      const pagination = document.getElementById('commentPagination');
+      let html = '';
+      for (let i=1; i<=totalPages; i++) {
+        html += `<button class="page-btn ${i===commentPage ? 'active' : ''}" onclick="goCommentPage(${i})">${i}</button>`;
+      }
+      pagination.innerHTML = html;
+    }
 
-function showAllPosts() {
-  document.getElementById('post-list').innerHTML = `
-  
-  <div class="card post" onclick="openPost(1)">
-    <img src="https:\/\/images.unsplash.com\/photo-1776142764728-f6dc6f712794" alt="山的另一侧">
-    <h3>山的另一侧</h3>
-    <p>关于孤独与远方的思考</p>
-  </div>
-  
-  <div class="card post" onclick="openPost(3)">
-    <img src="https:\/\/images.unsplash.com\/photo-1776141665862-cf96a1f336df" alt="慢下来">
-    <h3>慢下来</h3>
-    <p>生活的另一种节奏</p>
-  </div>
-  
-  <div class="card post" onclick="openPost(2)">
-    <img src="https:\/\/images.unsplash.com\/photo-1776141666154-6bcb1f431153" alt="风从哪里来">
-    <h3>风从哪里来</h3>
-    <p>旅途中遇见的风景</p>
-  </div>
-  `;
-}
+    function goCommentPage(page) {
+      commentPage = page;
+      renderComments();
+    }
 
-
-function showAllGallery(){
-  document.getElementById('gallery-list').innerHTML = `
-  
-  <img src="https:\/\/images.unsplash.com\/photo-1776142357895-320b0c9bc0a4" alt="风景" onclick="openLightbox(this.src)">
-  
-  <img src="https:\/\/images.unsplash.com\/photo-1776143308397-4264a9dddddb" alt="风景" onclick="openLightbox(this.src)">
-  
-  <img src="https:\/\/images.unsplash.com\/photo-1776141665908-63fdaf0d80b6" alt="风景" onclick="openLightbox(this.src)">
-  `;
-}
-
-</script>
-
+    
+    window.onload = () => {
+      initAllLikes();
+    };
+  </script>
 </body>
 </html>
